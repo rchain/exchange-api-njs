@@ -1,5 +1,5 @@
 const { ec } = require("elliptic");
-const { getAddrFromPrivateKey } = require("@tgrospic/rnode-grpc-js");
+const { getAddrFromPrivateKey,verifyRevAddr } = require("@tgrospic/rnode-grpc-js");
 const secp256k1 = new ec("secp256k1");
 
 // generate key pair
@@ -16,3 +16,6 @@ const key3 = secp256k1.keyFromPrivate([1, 2, 3]);
 // generate rev address and eth address from  key pair
 const addr = getAddrFromPrivateKey(key.getPrivate("hex"));
 console.log(addr);
+
+// verify if the rev address is a valid rev address
+verifyRevAddr(addr.revAddr)
