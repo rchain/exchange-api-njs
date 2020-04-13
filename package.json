@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@grpc/grpc-js": "^0.7.6",
-    "@tgrospic/rnode-grpc-js": "^0.8.3",
+    "@tgrospic/rnode-grpc-js": "^0.8.4",
     "elliptic": "^6.5.2",
     "google-protobuf": "^3.11.4"
   },
