@@ -20,6 +20,8 @@ const term = "@1!(2)";
 
 const exploratory_term = 'new return in{return!("a")}';
 
+const deployID = '30440220057f2a3f2d02b9cf42002a3dd56dba2eac9c83d200e1606e6607fac79f388a6d02204528c8fba9a49d0323fd4bae1ae005d790453d7e4e4b3f09a93b49c0e95285e7'
+
 async function main() {
   var client = new RClient(TESTNET_OBSERVER[0], 40401);
 
@@ -38,6 +40,9 @@ async function main() {
   // get blocks from blockNumber 10 to blockNumber 20
   var blockInfosAtHeights = await client.getBlocksByHeights(10, 20);
   console.log("get blocks by heights");
+
+  // find block info by the deployId
+  var blockByDeployId = await client.findDeploy(deployId)
 
   var result = await client.exploratoryDeploy(exploratory_term);
   assert.equal(result.result.postblockdataList[0].exprsList[0].gString, "a");
