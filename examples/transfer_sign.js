@@ -1,6 +1,6 @@
 const { ec } = require("elliptic");
 const secp256k1 = new ec("secp256k1");
-const { RClient, VaultAPI } = require("..");
+const { RClient, VaultAPI, template } = require("..");
 const { getAddrFromPrivateKey, signDeploy } = require("@tgrospic/rnode-grpc-js");
 const {
   MAINNET_SERVER,
@@ -23,11 +23,11 @@ const key3rand = secp256k1.genKeyPair();
 const key4rand = secp256k1.genKeyPair();
 
 
-function main(){
+async function main(){
     var client = new RClient(TESTNET_OBSERVER[0], 40401);
 
     //get the latest block number
-    const lastestBlocks = await this.getBlocks(1);
+    const lastestBlocks = await client.getBlocks(1);
     const latestBlock = lastestBlocks[0];
     const latestBlockNumber = latestBlock.blockinfo.blocknumber;
 
@@ -35,7 +35,7 @@ function main(){
     const fromAddr = getAddrFromPrivateKey(key.getPrivate("hex"));
     const toAddr = getAddrFromPrivateKey(key.getPrivate("hex"));
     const amount = 100000
-    const contract = VaultAPI.TRANSFER_ENSURE_TO_RHO_TPL.replace("$from", fromAddr)
+    const contract = template.TRANSFER_ENSURE_TO_RHO_TPL.replace("$from", fromAddr)
                         .replace("$to", toAddr)
                         .replace("$amount", amount);
     const phloPrice = 1
@@ -51,7 +51,7 @@ function main(){
 
 
       // send the signed deploy to the network
-      resp = await client.deployService.doDeploy(signDeploy)
+      resp = await client.deployService.doDeploy(signedDeploy)
 }
 
 (async () => {
