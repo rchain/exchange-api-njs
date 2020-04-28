@@ -22,7 +22,7 @@ const key2 = secp256k1.keyFromPrivate(
 const key3rand = secp256k1.genKeyPair();
 const key4rand = secp256k1.genKeyPair();
 
-async function main() {
+async function main () {
   const client = new RClient(TESTNET_OBSERVER[0], 40401);
   const vault = new VaultAPI(client);
   const addr = getAddrFromPrivateKey(key.getPrivate("hex"));
@@ -56,6 +56,17 @@ async function main() {
   const vaultT3 = new VaultAPI(T3client);
   const deploy3 = await vaultT3.createVault(randAddr2.revAddr, key);
   console.log(deploy3);
+
+  // transfer and transfer can provide your own phloPrice and phloLimit
+  // the default phloPrice is 1 and the default phloLimit is 1000000
+  const deploy4 = await vaultT3.transfer(addr.revAddr,
+    toAddr.revAddr,
+    10,
+    key,
+    1,
+    10000)
+  console.log(deploy4)
+
 }
 
 (async () => {
