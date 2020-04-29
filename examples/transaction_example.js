@@ -12,8 +12,8 @@ const {
 const blockHash =
   "8012e93f480d561045f1046d74f8cb7c31a96206e49dbdf15b22a636e18a4693";
 
-async function main() {
-  const client = new RClient(TESTNET_OBSERVER[0], 40401);
+async function main () {
+  const client = new RClient('observer-exch.services.mainnet.rchain.coop', 40401, { 'grpc.keepalive_time_ms': 10000 });
   client.configParam(param.TESTNET_TRANSFER_UNFOR);
   const transaction = await client.getTransaction(blockHash);
   console.log(transaction);
