@@ -22,7 +22,7 @@ const exploratory_term = 'new return in{return!("a")}';
 
 const deployID = '30440220057f2a3f2d02b9cf42002a3dd56dba2eac9c83d200e1606e6607fac79f388a6d02204528c8fba9a49d0323fd4bae1ae005d790453d7e4e4b3f09a93b49c0e95285e7'
 
-async function main() {
+async function main () {
   var client = new RClient(TESTNET_OBSERVER[0], 40401);
 
   //get the latest 10 block in the rnode
@@ -33,6 +33,9 @@ async function main() {
   var blockInfo = await client.getBlock(blockHash);
   console.log("get block ");
   assert.equal(blockInfo.blockinfo.blockinfo.blockhash, blockHash);
+
+  // last finalized block
+  const finalized = await client.lastFinalizedBlock()
   // confirm if a block is finalized
   assert(await client.isFinalized(blockHash));
   console.log("is finalized");
