@@ -7,7 +7,7 @@ Nodejs-based api RChain RNode RPC.
 ## Install
 
     npm install --save-dev grpc-tools protobufjs
-    npm install rchain/exchange-api-njs
+    npm install --save git://github.com/rchain/exchange-api-njs.git#exchange 
 
 ## Examples
 
