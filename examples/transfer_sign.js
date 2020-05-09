@@ -36,6 +36,7 @@ async function main(){
     const toAddr = getAddrFromPrivateKey(key.getPrivate("hex"));
     const amount = 100000
     const contract = template.TRANSFER_ENSURE_TO_RHO_TPL.replace("$from", fromAddr)
+                        .replace("$toAddr", toAddr)
                         .replace("$to", toAddr)
                         .replace("$amount", amount);
     const phloPrice = 1
