@@ -29,6 +29,8 @@ async function main () {
   var blockInfos = await client.getBlocks(10);
   console.log("get blockInfos");
   assert.equal(blockInfos.length, 10);
+
+  const latestBlockNumber = blockInfos[0].blockinfo.blocknumber
   //# get the detailed info in the rnode
   var blockInfo = await client.getBlock(blockHash);
   console.log("get block ");
@@ -40,16 +42,19 @@ async function main () {
   assert(await client.isFinalized(blockHash));
   console.log("is finalized");
 
-  // get blocks from blockNumber 10 to blockNumber 20
-  var blockInfosAtHeights = await client.getBlocksByHeights(10, 20);
+  // get blocks from blockNumber latestBlockNumber-10 to blockNumber latestBlockNumber
+  var blockInfosAtHeights = await client.getBlocksByHeights(latestBlockNumber - 10, latestBlockNumber);
   console.log("get blocks by heights");
 
   // find block info by the deployId
-  var blockByDeployId = await client.findDeploy(deployId)
+  var blockByDeployId = await client.findDeploy(deployID)
 
   var result = await client.exploratoryDeploy(exploratory_term);
   assert.equal(result.result.postblockdataList[0].exprsList[0].gString, "a");
   console.log("exploratory deploy");
+
+  // remember to close your client when you are done to save resource
+  client.closeClient()
 
   var testNetClient = new RClient(TESTNET_SERVER[0], 40401);
   var deploy = await testNetClient.deploy(
@@ -70,6 +75,8 @@ async function main () {
     Date.now()
   );
   console.log(deploy2);
+  // remember to close your client when you are done to save resource
+  testNetClient.closeClient()
 }
 
 (async () => {
