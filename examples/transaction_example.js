@@ -17,6 +17,8 @@ async function main () {
   client.configParam(param.TESTNET_TRANSFER_UNFOR);
   const transaction = await client.getTransaction(blockHash);
   console.log(transaction);
+  // remember to close your client when you are done to save resource
+  client.closeClient()
 }
 
 (async () => {
