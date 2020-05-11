@@ -31,6 +31,8 @@ async function main () {
   const randAddr2 = getAddrFromPrivateKey(key4rand.getPrivate("hex"));
   const balance = await vault.getBalance(addr.revAddr);
   console.log(balance);
+  // remember to close your client when you are done to save resource
+  client.closeClient()
 
   const Tclient = new RClient(TESTNET_SERVER[0], 40401);
   const vaultT1 = new VaultAPI(Tclient);
@@ -41,6 +43,8 @@ async function main () {
     key
   );
   console.log(deploy);
+  // remember to close your client when you are done to save resource
+  Tclient.closeClient()
 
   const T2client = new RClient(TESTNET_SERVER[1], 40401);
   const vaultT2 = new VaultAPI(T2client);
@@ -51,6 +55,8 @@ async function main () {
     key
   );
   console.log(deploy2);
+  // remember to close your client when you are done to save resource
+  T2client.closeClient()
 
   const T3client = new RClient(TESTNET_SERVER[2], 40401);
   const vaultT3 = new VaultAPI(T3client);
@@ -66,6 +72,8 @@ async function main () {
     1,
     10000)
   console.log(deploy4)
+  // remember to close your client when you are done to save resource
+  T3client.closeClient()
 
 }
 
