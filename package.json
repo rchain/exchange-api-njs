@@ -11,7 +11,7 @@
     "@tgrospic/rnode-grpc-js": "^0.8.5",
     "elliptic": "^6.5.3",
     "google-protobuf": "^3.11.4",
-    "grpc": "^1.24.2"
+    "grpc": "^1.24.4"
   },
   "devDependencies": {
     "grpc-tools": "^1.8.1",
