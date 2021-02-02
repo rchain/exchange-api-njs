@@ -7,7 +7,7 @@
   "author": "RChain Coop",
   "license": "MIT",
   "dependencies": {
-    "@grpc/grpc-js": "^0.7.6",
+    "@grpc/grpc-js": "^0.8.1",
     "@tgrospic/rnode-grpc-js": "^0.8.5",
     "elliptic": "^6.5.3",
     "google-protobuf": "^3.14.0",
